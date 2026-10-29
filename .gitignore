@@ -1,0 +1,10 @@
+# Ignore datasets and preprocessed output
+Images/
+preprocessed/
+preprocessed_no_clahe/
+reports/
+
+# Python / Virtual Environment
+.venv/
+__pycache__/
+*.pyc
