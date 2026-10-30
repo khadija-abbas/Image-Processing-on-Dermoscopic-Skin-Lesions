@@ -3,6 +3,8 @@ Images/
 preprocessed/
 preprocessed_no_clahe/
 reports/
+segmentation/
+data/
 
 # Python / Virtual Environment
 .venv/
