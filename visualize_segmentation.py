@@ -208,7 +208,7 @@ from src.config import GT_DIR, IMAGE_EXTENSIONS, RAW_DIR, REPORTS_DIR, SEG_CFG, 
 from src.ground_truth import index_masks, pick_ground_truth, read_mask
 from src.segmentation import METHODS
 
-METRICS_PATH = REPORTS_DIR / "segmentation_metrics_v3.csv"
+METRICS_PATH = REPORTS_DIR / "segmentation_metrics_v6.csv"
 TITLES = {"otsu": "Otsu (saliency)", "grabcut": "GrabCut (seeded)",
           "active_contour": "Active contour", "ensemble": "Ensemble (vote)"}
 

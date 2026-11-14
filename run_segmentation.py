@@ -22,7 +22,7 @@ from src.metrics import dice_iou
 from src.segmentation import METHODS, run_methods
 
 # METRICS_PATH = REPORTS_DIR / "segmentation_metrics.csv"
-METRICS_PATH = REPORTS_DIR / "segmentation_metrics_v3.csv"
+METRICS_PATH = REPORTS_DIR / "segmentation_metrics_v6.csv"
 
 
 def process_one(job):
@@ -67,10 +67,23 @@ def process_one(job):
 
 
 def main():
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("--limit", type=int, default=None, help="only the first N eligible images")
+    # parser.add_argument("--overwrite", action="store_true", help="redo images that already have results")
+    # parser.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 1))
+    # args = parser.parse_args()
     parser = argparse.ArgumentParser()
-    parser.add_argument("--limit", type=int, default=None, help="only the first N eligible images")
-    parser.add_argument("--overwrite", action="store_true", help="redo images that already have results")
-    parser.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 1))
+    parser.add_argument("--limit", type=int, default=None,
+                        help="only the first N eligible images")
+    parser.add_argument("--ids", nargs="*", default=None,
+                        help="process only the specified image IDs")
+    parser.add_argument("--range", nargs=2, type=int, default=None,
+                    metavar=("START", "END"),
+                    help="process images by sorted eligible position (inclusive, 1-based)")
+    parser.add_argument("--overwrite", action="store_true",
+                        help="redo images that already have results")
+    parser.add_argument("--workers", type=int,
+                        default=max(1, (os.cpu_count() or 2) - 1))
     args = parser.parse_args()
 
     # 1) Which images are available, and what do we know about each?
@@ -106,6 +119,13 @@ def main():
     assert jobs, "No eligible images (check LABELS_FILE / LABEL_COLUMN / GT_DIR)"
     if args.limit:
         jobs = jobs[:args.limit]
+    if args.ids:
+       jobs = [j for j in jobs if j[0] in set(a.upper() for a in args.ids)]
+    if args.ids:
+        requested = set(a.upper() for a in args.ids)
+        jobs = [j for j in jobs if j[0] in requested]
+
+    print(f"Images selected for processing: {len(jobs)}")
 
     # 2) Resume logic: skip images that already have all methods in the CSV and all mask files
     for m in METHODS:

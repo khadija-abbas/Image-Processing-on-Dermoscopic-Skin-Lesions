@@ -32,7 +32,7 @@ def categorize(r):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--csv", default=str(REPORTS_DIR / "segmentation_metrics_v3.csv"))
+    ap.add_argument("--csv", default=str(REPORTS_DIR / "segmentation_metrics_v6.csv"))
     ap.add_argument("--worst", type=int, default=15)
     ap.add_argument("--method", default="ensemble")
     args = ap.parse_args()
