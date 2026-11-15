@@ -7,6 +7,10 @@ segmentation/
 segmentation_v4/
 data/
 segs/
+segmentation_5000_images/
+candidates/
+
+
 # Python / Virtual Environment
 .venv/
 __pycache__/

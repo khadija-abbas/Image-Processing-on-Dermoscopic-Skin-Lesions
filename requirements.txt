@@ -7,4 +7,9 @@ requests
 
 scikit-image
 scipy
-openpyxl
+# openpyxl
+joblib
+
+
+
+scikit-learn
