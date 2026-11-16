@@ -19,7 +19,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--mode", default="best", choices=["best", "worst", "random", "median"])
 ap.add_argument("--n", type=int, default=10)
 ap.add_argument("--method", default="selected")                                   # folder in segmentation_v4/
-ap.add_argument("--csv", default="segmentation_metrics_5000_images.csv")             # file in reports/
+ap.add_argument("--csv", default="segmentation_metrics_selected.csv")             # file in reports/
 ap.add_argument("--tag", default="any", choices=["any", "hair", "sticker"])
 ap.add_argument("--hair-thr", type=float, default=0.03)       # >3% of pixels detected as hair
 ap.add_argument("--sticker-thr", type=float, default=0.01)    # >1% of pixels detected as sticker
