@@ -9,6 +9,7 @@ data/
 segs/
 segmentation_5000_images/
 candidates/
+delete_backup_csv/
 
 
 # Python / Virtual Environment
